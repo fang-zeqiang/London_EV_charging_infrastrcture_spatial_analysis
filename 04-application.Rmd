@@ -1,0 +1,17 @@
+# The Distribution analysis of samples
+
+You can generate a formal table to overview the distribution of samples. In order to compare samples between 2019 and 2020, you can obtain year from "dataCreated" which is timestamp format. Then you can create two columns in table (2019 & 2020).
+```{r}
+#3.1 select the years
+df$year = year(df$dateCreated)
+table(df$year)
+
+#select 2019 & 2020 
+df = df[year==2019|year==2020,]
+table(df$year)
+
+#3.2 show the table of the distribution of two years samples
+table1(~county|factor(year),data=df)
+
+# head(df)
+```

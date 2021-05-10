@@ -1,0 +1,34 @@
+--- 
+title: "Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs"
+author: "Zeqiang Fang"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+always_allow_html: true
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: 
+description: "This is tutorial for the spatial analysis for national chargepoint register data in London, UK."
+---
+
+# Introduction and Description of Data
+
+Electric vehicle (EV) infrastructure is of importance for sustainable urban development. "UK e-charging market is recognised as one of the most advanced in Europe," said Martin Lucas. He is a partner of Watson Farley & Williams LLP, an international law firm (2020). However, urban residents who purchase new energy vehicles have to face range anxiety, which has become a constraint on developing the EV market. EVs' sales are lower than expected because of the potential users' anxiety range (Bonges and Lusk, 2016).
+
+In this report, the research question will be investigated and discussed --- How do the distribution and density of EV charge change in London between 2019 and 2020? The aim is to apply theories from GIS, especially the spatial analysis method, to explore the distribution and density in these two years. Firstly, the big data of charge points, from the UK government official website, is pre-processed and cleaned. One of the analysis methods is to apply spatial pattern analysis. It is based on the number of samples in two years. It compares their distribution and density to obtain the corresponding objective value. Besides, a reproducible analysis process is established using open source spatial analysis software RStudio, which applies the advanced spatial analysis methods in clean energy and explores spatial value content to contribute to urban sustainability.
+
+## Electric Vehicle Charge Point Dataset
+
+The NCR, a database of charge points for electric vehicles in the UK, is available for individuals and business data developers without charge (GOV.UK, 2020). Following the UK government website's guidance, the National Chargepoint Registry (NCR) dataset was collected in CSV format. 
+
+You can access this dataset in this [link](https://www.gov.uk/guidance/find-and-use-data-on-public-electric-vehicle-chargepoints#accessing-data-on-ncv). **OR**, you can also access this dataset in the [github](https://raw.githubusercontent.com/Hereislittlemushroom/CASA0005_Final_Assessment/main/Dataset/national-charge-point-registry.csv)
+
+## London Boroughs Geometric Dataset
+
+Spatial data is available on the London Datastore official website. The shape format file called Statistical GIS Boundary is the original geographic boundaries data, which is based on our spatial analysis (London Datastore, 2020). One of the variables called "GSS_CODE" can be identified via "sf," an R package, to present the London borough polygons in multiple types. 
+
+You should download this complete folder to read shape file! The link is [here](https://github.com/Hereislittlemushroom/CASA0005_Final_Assessment/tree/main/Dataset/statistical-gis-boundaries-london)
+
+

@@ -1,0 +1,24 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li class="toc-logo">
+          <a href="https://zeqiang.fun/_book/">
+            <center>
+              <img src="https://avatars1.githubusercontent.com/u/32094055?s=460&u=812c0f021dee25f160dac8e8d034265127fff36c&v=4" alt="My Icon" width="80" height="80">
+              <p>Zeqiang's Blog</p>
+            </center>
+          </a>
+        </li>
+      after: |
+        <li><a href="https://rpubs.com/fangzq/CASA0005_Final_Assessment" target="blank">See this project on the RPubs</a></li>
+    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
+    download: ["pdf", "epub","html"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

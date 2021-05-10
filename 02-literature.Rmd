@@ -1,0 +1,125 @@
+# Data Pre-processing
+
+## Read data into R
+
+The **National Chargepoint Register(NCR)** is a database of publicly-available chargepoints for electric vehicles in the UK established in 2011(,2021). you can access data in this [link](https://www.gov.uk/guidance/find-and-use-data-on-public-electric-vehicle-chargepoints#accessing-data-on-ncv)
+
+Now, let's read original data in R
+```{r,eval=FALSE}
+UK_NCR= read.csv(here::here("dataset","national-charge-point-registry.csv")) 
+# This may take for a while, which depends on the speed of internet
+
+# you can have a overview of this dataset
+print("The number of rows is: ")
+nrow(UK_NCR)
+print("The number of columns is: ")
+ncol(UK_NCR)
+print("70 of all varriables are:")
+head(names(UK_NCR),n = 70)
+```
+
+Tip: If you cannot successfully read this dataset, you can replace the above link with "https://raw.githubusercontent.com/Hereislittlemushroom/CASA0005_Final_Assessment/main/Dataset/national-charge-point-registry.csv"
+
+## Data Selection
+
+Select the charge points of london area in this UK csv file。
+You can utilise `filter` function from `dplyr` package to choose the charge point data in london boroughs
+
+```{r,eval=FALSE}
+
+London_NCR = UK_NCR %>%
+  dplyr::filter(  !is.na(county),
+                  county == "London" | 
+                  county == "Greater London " | 
+                  county == "London Borough of Camden" |
+                  county == "London Borough of Ealing" | 
+                  county == "London Borough of Greenwich" | 
+                  county == "London Borough of Hackney" | 
+                  county == "London Borough of Hammersmith and Fulham" | 
+                  county == "London Borough of Hounslow" | 
+                  county == "London Borough of Islington" | 
+                  county == "London Borough of Lambeth" | 
+                  county == "London Borough of Richmond upon Thames" | 
+                  county == "London Borough of Southwark" |
+                  county == "London Borough Of Southwark" |
+                  county == "London Borough of Waltham Forest" | 
+                  county == "London Borough of Wandsworth")
+```
+
+Check if all values in `county` are attributed to "London"
+```{r,eval=FALSE}
+isLondon = London_NCR$county %>%
+  unique()
+isLondon
+```
+
+In the next step, you can select the valuable attributes e.g. latitude,longitude.
+```{r,eval=FALSE}
+# Tip: the index of data frame starts from 1
+# Select the variables by their index
+London_NCR = London_NCR %>%
+  select(1,4,5,13,14,15,32,35,36,38,54)
+
+# Check the variables we have chosen and the number of rows & cols
+London_NCR %>%
+  names()
+London_NCR %>%
+  nrow()
+London_NCR %>%
+  ncol()
+```
+
+## Data Cleaning
+
+Map and visualisation play important roles in spatial analysis. To make a heat map for further research, you need to merge geographic information for each row in charge point dataset in the first place.
+
+To begin with, import "PostcodesioR". This R package offer methods to match
+```{r,results='hide',eval=FALSE}
+# install.packages("PostcodesioR")
+library(PostcodesioR)
+```
+
+Before applying "for-loop" method to fill values in `GSS_CODE` by identifying `postcode`, you can add a new columns called `GSS_CODE` in London_NCR dataset.
+```{r,eval=FALSE}
+# Attentions: you can skip this chunk because the for-loop process can take for a quite long time (about 5 min).
+# It is not necessary to stick on it, just skip!
+
+London_NCR_GSS_Added = London_NCR %>%
+  rowwise() %>%
+  mutate(GSS_CODE = postcode) %>%
+  # Tip: it is essential to transform numerical data into one in character
+  mutate(GSS_CODE = as.character(GSS_CODE))
+
+# Pay attention to the for loop in dataframe, it starts from 1
+
+i = 1
+for (val in London_NCR_GSS_Added$postcode) {
+  try({ temp1 = PostcodesioR::postcode_lookup(val)
+        if(!is.null(temp)){
+          temp2 = temp1$admin_district_code[1]
+          London_NCR_GSS_Added$GSS_CODE[i] = temp2
+        }else{
+          London_NCR_GSS_Added$GSS_CODE[i] = ""
+        }
+        i = i+1 }
+      ,silent = TRUE)
+}
+
+# remove the rows whose value of `GSS_CODE` is empty
+# There are limitations in this process because the rows missing `GSS_CODE` cannot be included in the dataset, which can slightly affect the research results 
+
+London_NCR_GSS_Added$GSS_CODE[London_NCR_GSS_Added$GSS_CODE==""] = NA
+London_NCR_GSS_Added = London_NCR_GSS_Added %>%
+  filter(!is.na(GSS_CODE))
+```
+
+Finally, it is of importance to export our prepossessed data into csv file! Now we get the London_NCR_GSS_Added.csv in our "/Dataset" path. 
+
+```{r,eval=FALSE}
+# export London_NCR_GSS_Added data frame into .CSV format
+library(here)
+write.csv(London_NCR_GSS_Added, here::here("Dataset","London_NCR_GSS_Added.csv"), row.names = FALSE, col.names = TRUE)
+# `col.names = TRUE` is important to be writen down
+```
+Also, you can access this prepocessed dataset in github link:
+  https://raw.githubusercontent.com/Hereislittlemushroom/CASA0005_Final_Assessment/main/Dataset/London_NCR_GSS_Added.csv

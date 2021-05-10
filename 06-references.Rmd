@@ -1,0 +1,143 @@
+# Analysing Spatial Autocorrelation with Moran’s I
+  
+Since the sample in 2019 & 2020 is too small to run a good result, you can analysis the autocorrelation based on the samples which contain these two years.
+  
+## Generate the data for analysis
+
+This process is similar to the 4.2 and 4.3 data preparation.
+```{r,results='hide'}
+sdf = merge(London_Borough,df,by="GSS_CODE",all = TRUE)
+sdf = sdf[,c("GSS_CODE","geometry","longitude","latitude")]
+nsdf = sdf%>%
+  add_count(GSS_CODE)%>%
+  mutate(area=st_area(.))%>%
+  mutate(density=n*1000*1000/area)
+
+nsdf = dplyr::select(nsdf,density,GSS_CODE, n)
+
+nsdf = nsdf%>%                    
+  group_by(GSS_CODE)%>%         
+  summarise(density = first(density), GSS_CODE = first(GSS_CODE))
+```
+
+## Centroids and neighbour list
+
+Plot the centroids of all boroughs in London
+```{r}
+coordsW = nsdf%>%
+   st_centroid()%>%
+   st_geometry()
+ 
+ plot(coordsW,axes=TRUE)
+```
+
+Create a neighbours list
+
+```{r}
+ LWard_nb = nsdf %>% 
+  poly2nb(.,queen=T)
+```
+ 
+Plot the neighbours list we create
+```{r}
+plot(nsdf$geometry)
+plot(LWard_nb, st_geometry(coordsW), col="blue", add = T)
+```
+
+Create a spatial weights object from these weights, which can contribute to the further analysis autocorrelation analysis (Moran's I test)
+
+```{r}
+Lward.lw = nb2listw(LWard_nb, style="C")
+head(Lward.lw$neighbours)
+```
+
+## Calculate the Global Moran'I Index
+ 
+Conduct the global Moran's I test to get the value. 
+```{r}
+ I_LWard_Global_Density = nsdf %>%
+   pull(density) %>%
+   as.vector()%>%
+   moran.test(.,Lward.lw)
+names(I_LWard_Global_Density)
+head(I_LWard_Global_Density)
+```
+
+Conduct the Local Moran's I test in these two years
+```{r}
+ I_LWard_Local_Density = nsdf %>%
+   pull(density) %>%
+   as.vector()%>%
+   localmoran(., Lward.lw)%>%
+   as_tibble()
+```
+
+Merge the moran test result with the geometric dataset. The I value is stored in "density_Iz" and the Z value is stored in "density_Iz".
+```{r,results='hide'}
+nsdf<-nsdf%>%
+   mutate(density_I = as.numeric(I_LWard_Local_Density$Ii))%>%
+   mutate(density_Iz =as.numeric(I_LWard_Local_Density$Z.Ii)) 
+summary(nsdf$density_I)
+summary(nsdf$density_Iz)
+```
+
+## Interactive visulisation of the distribution of the local Moran results
+
+For drawing an interactive map, you should set "view" variables in `tmap_mode` function. You can set break box by the minimum and maximum value of Moran.
+```{r}
+tmap_mode("view")
+#set the group and colour
+summary(nsdf$density_Iz)
+# breaks1 = seq(-3,1,0.5)
+breaks1 = c(-2,-1,-0.1,-0.01,0,0.01,0.1,0.45,1,1.5 ) 
+# breaks2 = c(-1000,-2.58,-1.96,-1.65,1.65,1.96,2.58,1000)
+# Depends on the max and min value in Moran's I
+MoranColours = rev(brewer.pal(8, "RdGy"))
+# Plot the map
+tm_shape(nsdf) +
+  tm_polygons("density_Iz",
+              style="fixed",
+              breaks=breaks1,
+              palette=MoranColours,
+              midpoint=NA,
+              title="Local Moran's I,EV charge points in London")
+
+```
+
+## GI score
+
+You can repeat the similar process as you can in 5.4 section to do the data preparation.
+```{r}
+Gi_LWard_Local_Density = nsdf %>%
+  pull(density) %>%
+  as.vector()%>%
+  localG(., Lward.lw)
+
+# To get the Min and Max value
+summary(Gi_LWard_Local_Density)
+```
+Calculate the Gi score and transform the data type into numeric one.
+```{r}
+Gi_nsdf = nsdf %>%
+  mutate(density_G = as.numeric(Gi_LWard_Local_Density))
+```
+
+Based on the summary result of GI score to set the scale of breaks. Finally, the interactive map of Gi score distribution can be created.
+```{r}
+GIColours = rev(brewer.pal(8, "RdBu"))
+
+# This breaks box bases on the summary result：
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# -0.8861 -0.4445 -0.1112  0.1998  0.4569  2.6561 
+breaks_GI = c(-2,-1.5,-1,-0.4,-0.2,0,0.2,0.5,1,2,2.5,3)
+
+# Now plot on an interactive map
+tmap_mode("view")
+tm_shape(Gi_nsdf) +
+    tm_polygons("density_G",
+        style="fixed",
+        breaks=breaks_GI,
+        palette=GIColours,
+        midpoint=NA,
+        title="Gi*, EV charge points in London")
+```
