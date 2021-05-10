@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 4 Basic Settings | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs</title>
+  <meta name="description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 4 Basic Settings | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 4 Basic Settings | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs" />
+  
+  <meta name="twitter:description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  
+
+<meta name="author" content="Zeqiang Fang" />
+
+
+<meta name="date" content="2021-01-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-pre-processing.html"/>
+<link rel="next" href="the-distribution-analysis-of-samples.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+  <a href="https://zeqiang.fun/_book/">
+    <center>
+      <img src="https://avatars1.githubusercontent.com/u/32094055?s=460&u=812c0f021dee25f160dac8e8d034265127fff36c&v=4" alt="My Icon" width="80" height="80">
+      <p>Zeqiang's Blog</p>
+    </center>
+  </a>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and Description of Data</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#electric-vehicle-charge-point-dataset"><i class="fa fa-check"></i><b>1.1</b> Electric Vehicle Charge Point Dataset</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#london-boroughs-geometric-dataset"><i class="fa fa-check"></i><b>1.2</b> London Boroughs Geometric Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="environment-preparation.html"><a href="environment-preparation.html"><i class="fa fa-check"></i><b>2</b> Environment Preparation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="environment-preparation.html"><a href="environment-preparation.html#environment-recommendation"><i class="fa fa-check"></i><b>2.1</b> Environment Recommendation</a></li>
+<li class="chapter" data-level="2.2" data-path="environment-preparation.html"><a href="environment-preparation.html#import-packages-for-spatial-analysis-and-map-making"><i class="fa fa-check"></i><b>2.2</b> Import packages for spatial analysis and map making</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-pre-processing.html"><a href="data-pre-processing.html"><i class="fa fa-check"></i><b>3</b> Data Pre-processing</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-pre-processing.html"><a href="data-pre-processing.html#read-data-into-r"><i class="fa fa-check"></i><b>3.1</b> Read data into R</a></li>
+<li class="chapter" data-level="3.2" data-path="data-pre-processing.html"><a href="data-pre-processing.html#data-selection"><i class="fa fa-check"></i><b>3.2</b> Data Selection</a></li>
+<li class="chapter" data-level="3.3" data-path="data-pre-processing.html"><a href="data-pre-processing.html#data-cleaning"><i class="fa fa-check"></i><b>3.3</b> Data Cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-settings.html"><a href="basic-settings.html"><i class="fa fa-check"></i><b>4</b> Basic Settings</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="basic-settings.html"><a href="basic-settings.html#set-the-path-of-your-project."><i class="fa fa-check"></i><b>4.1</b> Set the path of your project.</a></li>
+<li class="chapter" data-level="4.2" data-path="basic-settings.html"><a href="basic-settings.html#import-the-shape-file"><i class="fa fa-check"></i><b>4.2</b> Import the shape file</a></li>
+<li class="chapter" data-level="4.3" data-path="basic-settings.html"><a href="basic-settings.html#import-the-processed-london-national-chargepoint-register-ncr-dataset"><i class="fa fa-check"></i><b>4.3</b> Import the processed London national chargepoint register (NCR) dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="the-distribution-analysis-of-samples.html"><a href="the-distribution-analysis-of-samples.html"><i class="fa fa-check"></i><b>5</b> The Distribution analysis of samples</a></li>
+<li class="chapter" data-level="6" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><i class="fa fa-check"></i><b>6</b> Visualisation and comparison of the density of London EV charge point between two years</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#data-cleaning-for-mapping"><i class="fa fa-check"></i><b>6.1</b> Data cleaning for mapping</a></li>
+<li class="chapter" data-level="6.2" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#the-density-of-data-in-2019"><i class="fa fa-check"></i><b>6.2</b> The density of data in 2019</a></li>
+<li class="chapter" data-level="6.3" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#the-density-of-data-in-2020"><i class="fa fa-check"></i><b>6.3</b> The density of data in 2020</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Autocorrelation with Moran’s I</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#generate-the-data-for-analysis"><i class="fa fa-check"></i><b>7.1</b> Generate the data for analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#centroids-and-neighbour-list"><i class="fa fa-check"></i><b>7.2</b> Centroids and neighbour list</a></li>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#calculate-the-global-morani-index"><i class="fa fa-check"></i><b>7.3</b> Calculate the Global Moran’I Index</a></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#interactive-visulisation-of-the-distribution-of-the-local-moran-results"><i class="fa fa-check"></i><b>7.4</b> Interactive visulisation of the distribution of the local Moran results</a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#gi-score"><i class="fa fa-check"></i><b>7.5</b> GI score</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://rpubs.com/fangzq/CASA0005_Final_Assessment" target="blank">See this project on the RPubs</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-settings" class="section level1" number="4">
+<h1><span class="header-section-number">Section 4</span> Basic Settings</h1>
+<p>In this section, you will set the work path, import R packages, download the shape file &amp; its folder and read datasets in RStudio.</p>
+<div id="set-the-path-of-your-project." class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Set the path of your project.</h2>
+<p>Before you do the research, you should set the default path. The path below is mine, you should set your <strong>own work path</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="basic-settings.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/fangzeqiang/Github/tutorial_bookdown/&quot;</span>)</span></code></pre></div>
+</div>
+<div id="import-the-shape-file" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Import the shape file</h2>
+<p>What you should keep in mind is that this shape file should be run in the complete ESRI dir because there are some dependent files that the shape file might use.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="basic-settings.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you can download these files from github to your local work path that you set above</span></span>
+<span id="cb10-2"><a href="basic-settings.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># github link: https://github.com/Hereislittlemushroom/CASA0005_Final_Assessment/tree/main/Dataset/statistical-gis-boundaries-london</span></span>
+<span id="cb10-3"><a href="basic-settings.html#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="basic-settings.html#cb10-4" aria-hidden="true" tabindex="-1"></a>London_Borough <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;dataset/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `London_Borough_Excluding_MHW&#39; from data source `/Users/fangzeqiang/Github/tutorial_bookdown/dataset/statistical-gis-boundaries-london/ESRI/London_Borough_Excluding_MHW.shp&#39; using driver `ESRI Shapefile&#39;
+## Simple feature collection with 33 features and 7 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## CRS:            27700</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="basic-settings.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the map</span></span>
+<span id="cb12-2"><a href="basic-settings.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(London_Borough))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="import-the-processed-london-national-chargepoint-register-ncr-dataset" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Import the processed London national chargepoint register (NCR) dataset</h2>
+<p>The reason why choosing <code>fread</code> to read is because the read method is faster than the traditional ones. You can read .CSV file by <code>df = fread("Dataset/London_NCR_GSS_Added.csv")</code>. However, in the following codes, I recommend that you read the pre-processed dataset from my github link.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="basic-settings.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df = fread(&quot;Dataset/London_NCR_GSS_Added.csv&quot;)</span></span>
+<span id="cb13-2"><a href="basic-settings.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df = fread(here::here(&quot;dataset&quot;,&quot;London_NCR_GSS_Added.csv&quot;))</span></span>
+<span id="cb13-3"><a href="basic-settings.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># df = fread(&quot;http://zeqiang.fun/_book/dataset/London_NCR_GSS_Added.csv&quot;)</span></span>
+<span id="cb13-4"><a href="basic-settings.html#cb13-4" aria-hidden="true" tabindex="-1"></a> df <span class="ot">=</span> <span class="fu">fread</span>(<span class="st">&quot;http://raw.githubusercontent.com/Hereislittlemushroom/CASA0005_Final_Assessment/main/Dataset/London_NCR_GSS_Added.csv&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-pre-processing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-distribution-analysis-of-samples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-method.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub", "bookdown-demo.html"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

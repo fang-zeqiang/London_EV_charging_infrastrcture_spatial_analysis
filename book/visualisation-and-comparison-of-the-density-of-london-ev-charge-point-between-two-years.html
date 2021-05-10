@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 6 Visualisation and comparison of the density of London EV charge point between two years | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs</title>
+  <meta name="description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 6 Visualisation and comparison of the density of London EV charge point between two years | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 6 Visualisation and comparison of the density of London EV charge point between two years | Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs" />
+  
+  <meta name="twitter:description" content="This is tutorial for the spatial analysis for national chargepoint register data in London, UK." />
+  
+
+<meta name="author" content="Zeqiang Fang" />
+
+
+<meta name="date" content="2021-01-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-distribution-analysis-of-samples.html"/>
+<link rel="next" href="analysing-spatial-autocorrelation-with-morans-i.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+  <a href="https://zeqiang.fun/_book/">
+    <center>
+      <img src="https://avatars1.githubusercontent.com/u/32094055?s=460&u=812c0f021dee25f160dac8e8d034265127fff36c&v=4" alt="My Icon" width="80" height="80">
+      <p>Zeqiang's Blog</p>
+    </center>
+  </a>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction and Description of Data</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#electric-vehicle-charge-point-dataset"><i class="fa fa-check"></i><b>1.1</b> Electric Vehicle Charge Point Dataset</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#london-boroughs-geometric-dataset"><i class="fa fa-check"></i><b>1.2</b> London Boroughs Geometric Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="environment-preparation.html"><a href="environment-preparation.html"><i class="fa fa-check"></i><b>2</b> Environment Preparation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="environment-preparation.html"><a href="environment-preparation.html#environment-recommendation"><i class="fa fa-check"></i><b>2.1</b> Environment Recommendation</a></li>
+<li class="chapter" data-level="2.2" data-path="environment-preparation.html"><a href="environment-preparation.html#import-packages-for-spatial-analysis-and-map-making"><i class="fa fa-check"></i><b>2.2</b> Import packages for spatial analysis and map making</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-pre-processing.html"><a href="data-pre-processing.html"><i class="fa fa-check"></i><b>3</b> Data Pre-processing</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-pre-processing.html"><a href="data-pre-processing.html#read-data-into-r"><i class="fa fa-check"></i><b>3.1</b> Read data into R</a></li>
+<li class="chapter" data-level="3.2" data-path="data-pre-processing.html"><a href="data-pre-processing.html#data-selection"><i class="fa fa-check"></i><b>3.2</b> Data Selection</a></li>
+<li class="chapter" data-level="3.3" data-path="data-pre-processing.html"><a href="data-pre-processing.html#data-cleaning"><i class="fa fa-check"></i><b>3.3</b> Data Cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-settings.html"><a href="basic-settings.html"><i class="fa fa-check"></i><b>4</b> Basic Settings</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="basic-settings.html"><a href="basic-settings.html#set-the-path-of-your-project."><i class="fa fa-check"></i><b>4.1</b> Set the path of your project.</a></li>
+<li class="chapter" data-level="4.2" data-path="basic-settings.html"><a href="basic-settings.html#import-the-shape-file"><i class="fa fa-check"></i><b>4.2</b> Import the shape file</a></li>
+<li class="chapter" data-level="4.3" data-path="basic-settings.html"><a href="basic-settings.html#import-the-processed-london-national-chargepoint-register-ncr-dataset"><i class="fa fa-check"></i><b>4.3</b> Import the processed London national chargepoint register (NCR) dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="the-distribution-analysis-of-samples.html"><a href="the-distribution-analysis-of-samples.html"><i class="fa fa-check"></i><b>5</b> The Distribution analysis of samples</a></li>
+<li class="chapter" data-level="6" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><i class="fa fa-check"></i><b>6</b> Visualisation and comparison of the density of London EV charge point between two years</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#data-cleaning-for-mapping"><i class="fa fa-check"></i><b>6.1</b> Data cleaning for mapping</a></li>
+<li class="chapter" data-level="6.2" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#the-density-of-data-in-2019"><i class="fa fa-check"></i><b>6.2</b> The density of data in 2019</a></li>
+<li class="chapter" data-level="6.3" data-path="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#the-density-of-data-in-2020"><i class="fa fa-check"></i><b>6.3</b> The density of data in 2020</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Autocorrelation with Moran’s I</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#generate-the-data-for-analysis"><i class="fa fa-check"></i><b>7.1</b> Generate the data for analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#centroids-and-neighbour-list"><i class="fa fa-check"></i><b>7.2</b> Centroids and neighbour list</a></li>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#calculate-the-global-morani-index"><i class="fa fa-check"></i><b>7.3</b> Calculate the Global Moran’I Index</a></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#interactive-visulisation-of-the-distribution-of-the-local-moran-results"><i class="fa fa-check"></i><b>7.4</b> Interactive visulisation of the distribution of the local Moran results</a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-autocorrelation-with-morans-i.html"><a href="analysing-spatial-autocorrelation-with-morans-i.html#gi-score"><i class="fa fa-check"></i><b>7.5</b> GI score</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://rpubs.com/fangzq/CASA0005_Final_Assessment" target="blank">See this project on the RPubs</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorial Book: The Analysis of Distribution and Density Changes of Electric Vehicle Charging Points in London Boroughs</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years" class="section level1" number="6">
+<h1><span class="header-section-number">Section 6</span> Visualisation and comparison of the density of London EV charge point between two years</h1>
+<div id="data-cleaning-for-mapping" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Data cleaning for mapping</h2>
+<p>You should split the NCR dataset to two dataset of two years, and merged these two processed dataset with geometric data respectively. Then we calculate the density for two years. Finally we can visualise and map the density</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#5.1 process the data to divide them by years(2019 &amp; 2020)</span></span>
+<span id="cb20-2"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-2" aria-hidden="true" tabindex="-1"></a>df1<span class="ot">&lt;-</span><span class="fu">subset</span>(df,year<span class="sc">==</span><span class="dv">2019</span>) <span class="co">#2019 year</span></span>
+<span id="cb20-3"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-3" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">&lt;-</span><span class="fu">subset</span>(df,year<span class="sc">==</span><span class="dv">2020</span>) <span class="co">#2020 year</span></span>
+<span id="cb20-4"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># EV charge points created in 2019</span></span>
+<span id="cb20-6"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sdf1&lt;-merge(London_Borough,df1,by=&quot;GSS_CODE&quot;)</span></span>
+<span id="cb20-7"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-7" aria-hidden="true" tabindex="-1"></a>sdf1<span class="ot">&lt;-</span><span class="fu">merge</span>(London_Borough,df1,<span class="at">by=</span><span class="st">&quot;GSS_CODE&quot;</span>,<span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-8"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-8" aria-hidden="true" tabindex="-1"></a>sdf1<span class="ot">&lt;-</span>sdf1[,<span class="fu">c</span>(<span class="st">&quot;GSS_CODE&quot;</span>,<span class="st">&quot;geometry&quot;</span>,<span class="st">&quot;longitude&quot;</span>,<span class="st">&quot;latitude&quot;</span>)]</span>
+<span id="cb20-9"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># EV charge points created in 2020</span></span>
+<span id="cb20-11"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># sdf2&lt;-merge(London_Borough,df2,by=&quot;GSS_CODE&quot;)</span></span>
+<span id="cb20-12"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-12" aria-hidden="true" tabindex="-1"></a>sdf2<span class="ot">&lt;-</span><span class="fu">merge</span>(London_Borough,df2,<span class="at">by=</span><span class="st">&quot;GSS_CODE&quot;</span>,<span class="at">all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-13"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb20-13" aria-hidden="true" tabindex="-1"></a>sdf2<span class="ot">&lt;-</span>sdf2[,<span class="fu">c</span>(<span class="st">&quot;GSS_CODE&quot;</span>,<span class="st">&quot;geometry&quot;</span>,<span class="st">&quot;longitude&quot;</span>,<span class="st">&quot;latitude&quot;</span>)]</span></code></pre></div>
+</div>
+<div id="the-density-of-data-in-2019" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> The density of data in 2019</h2>
+<p>First, you should calculate the density and transform the unit of area from m^2 o km^2. Then, select the necessary columns and add frequency of samples grouped by <code>GSS_CODE</code>. In other words, you get the numeric and spatial data of EV charge point for each borough of London.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data preparation</span></span>
+<span id="cb21-2"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-2" aria-hidden="true" tabindex="-1"></a>nsdf1 <span class="ot">=</span> sdf1<span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_count</span>(GSS_CODE)<span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area=</span><span class="fu">st_area</span>(.))<span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use dplyr::mutate to calculate the density of the charge point for each borough</span></span>
+<span id="cb21-6"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">density=</span>n<span class="sc">*</span><span class="dv">1000</span><span class="sc">*</span><span class="dv">1000</span><span class="sc">/</span>area)</span>
+<span id="cb21-7"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># because the st_area default unit is square metre</span></span>
+<span id="cb21-8"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># select the following variables---&quot;density&quot;,&quot;GSS_CODE&quot;,&quot;n&quot;(the count of GSS_CODE)</span></span>
+<span id="cb21-10"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-10" aria-hidden="true" tabindex="-1"></a>nsdf1 <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">select</span>(nsdf1,density,GSS_CODE, n)</span>
+<span id="cb21-11"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-12" aria-hidden="true" tabindex="-1"></a>nsdf1 <span class="ot">=</span> nsdf1<span class="sc">%&gt;%</span>                    </span>
+<span id="cb21-13"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GSS_CODE)<span class="sc">%&gt;%</span>         </span>
+<span id="cb21-14"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">density =</span><span class="fu">first</span>(density),<span class="at">GSS_CODE=</span><span class="fu">first</span>(GSS_CODE))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p>Now you can generate map after setting some variables in <code>tmap_mode</code>, <code>tm_compass</code> and <code>tm_polygons</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
+<pre><code>## tmap mode set to plotting</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the figure: The distribution of the density of the London charge points in 2019</span></span>
+<span id="cb25-2"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>( nsdf1) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>( <span class="at">north =</span> <span class="dv">0</span>,</span>
+<span id="cb25-4"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">&quot;4star&quot;</span>,</span>
+<span id="cb25-5"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">text.size =</span> <span class="fl">0.8</span>,</span>
+<span id="cb25-6"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">2.5</span>,</span>
+<span id="cb25-7"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">show.labels =</span> <span class="dv">1</span>,</span>
+<span id="cb25-8"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">cardinal.directions =</span> <span class="fu">c</span>(<span class="st">&quot;N&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;W&quot;</span>),</span>
+<span id="cb25-9"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">lwd =</span> <span class="dv">1</span>,</span>
+<span id="cb25-10"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),</span>
+<span id="cb25-11"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">bg.color =</span> <span class="cn">NA</span>,</span>
+<span id="cb25-12"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">bg.alpha =</span> <span class="cn">NA</span>,</span>
+<span id="cb25-13"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">just =</span> <span class="cn">NA</span>,</span>
+<span id="cb25-14"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;density&quot;</span>,</span>
+<span id="cb25-16"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">style=</span><span class="st">&quot;jenks&quot;</span>,</span>
+<span id="cb25-17"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">&quot;RdPu&quot;</span>,</span>
+<span id="cb25-18"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">midpoint=</span><span class="cn">NA</span>,</span>
+<span id="cb25-19"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">popup.vars=</span><span class="fu">c</span>(<span class="st">&quot;GSS_CODE&quot;</span>, <span class="st">&quot;density&quot;</span>),</span>
+<span id="cb25-20"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">title=</span><span class="st">&quot;Density per square kilometre (2019)&quot;</span></span>
+<span id="cb25-21"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb25-21" aria-hidden="true" tabindex="-1"></a>              )</span></code></pre></div>
+<pre><code>## Warning: The argument fontsize of tm_compass is deprecated. It has been renamed
+## to text.size</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="the-density-of-data-in-2020" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> The density of data in 2020</h2>
+<p>Then you should conduct the similar process as the 4.2 section to draw the density of EV charge point data in 2020.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-1" aria-hidden="true" tabindex="-1"></a>nsdf2 <span class="ot">=</span> sdf2<span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_count</span>(GSS_CODE)<span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">area=</span><span class="fu">st_area</span>(.))<span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(units<span class="sc">::</span><span class="fu">set_units</span>(area,km<span class="sc">^</span><span class="dv">2</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">density=</span>n<span class="sc">*</span><span class="dv">1000</span><span class="sc">*</span><span class="dv">1000</span><span class="sc">/</span>area)</span>
+<span id="cb27-6"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-7" aria-hidden="true" tabindex="-1"></a>nsdf2 <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">select</span>(nsdf2,density,GSS_CODE, n)</span>
+<span id="cb27-8"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-9" aria-hidden="true" tabindex="-1"></a>nsdf2 <span class="ot">=</span> nsdf2<span class="sc">%&gt;%</span>                    </span>
+<span id="cb27-10"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GSS_CODE)<span class="sc">%&gt;%</span>         </span>
+<span id="cb27-11"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">density =</span><span class="fu">first</span>(density),<span class="at">GSS_CODE=</span><span class="fu">first</span>(GSS_CODE))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
+<pre><code>## tmap mode set to plotting</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>( nsdf2) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>( <span class="at">north =</span> <span class="dv">0</span>,</span>
+<span id="cb31-3"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">&quot;4star&quot;</span>,</span>
+<span id="cb31-4"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">text.size =</span> <span class="fl">0.8</span>,</span>
+<span id="cb31-5"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">size =</span> <span class="fl">2.5</span>,</span>
+<span id="cb31-6"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">show.labels =</span> <span class="dv">1</span>,</span>
+<span id="cb31-7"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">cardinal.directions =</span> <span class="fu">c</span>(<span class="st">&quot;N&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;W&quot;</span>),</span>
+<span id="cb31-8"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">lwd =</span> <span class="dv">1</span>,</span>
+<span id="cb31-9"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>),</span>
+<span id="cb31-10"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">bg.color =</span> <span class="cn">NA</span>,</span>
+<span id="cb31-11"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">bg.alpha =</span> <span class="cn">NA</span>,</span>
+<span id="cb31-12"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">just =</span> <span class="cn">NA</span>,</span>
+<span id="cb31-13"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb31-14"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;density&quot;</span>,</span>
+<span id="cb31-15"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">style=</span><span class="st">&quot;jenks&quot;</span>,</span>
+<span id="cb31-16"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">&quot;PuOr&quot;</span>,</span>
+<span id="cb31-17"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">midpoint=</span><span class="cn">NA</span>,</span>
+<span id="cb31-18"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">popup.vars=</span><span class="fu">c</span>(<span class="st">&quot;GSS_CODE&quot;</span>, <span class="st">&quot;density&quot;</span>),</span>
+<span id="cb31-19"><a href="visualisation-and-comparison-of-the-density-of-london-ev-charge-point-between-two-years.html#cb31-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">title=</span><span class="st">&quot;Density per square kilometre (2020)&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: The argument fontsize of tm_compass is deprecated. It has been renamed
+## to text.size</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-distribution-analysis-of-samples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysing-spatial-autocorrelation-with-morans-i.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub", "bookdown-demo.html"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
